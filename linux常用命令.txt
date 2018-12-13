@@ -1,0 +1,88 @@
+查看已经安装的软件列表
+$ dpkg -l
+
+卸载某个软件
+$ sudo apt-get remove virtualbox-4.2     （virtualbox-4.2为软件名称，通过 dpkg -l 获取）
+
+删除非空文件夹
+$ rm -rf XXX
+
+安装软件
+$ sudo apt-get install XXX
+
+从linux往手机里面push文件
+adb push ./wx_charts_web /sdcard/husj/
+
+adb shell dumpsys SurfaceFlinger --list
+
+//列出所有的包名
+adb shell pm list packages
+
+//查看进程
+adb shell ps | grep "tencent"
+
+//adb 查看最上层成activity名字
+adb shell dumpsys activity | grep "mFocusedActivity"
+
+//Android Studio 3.0 打开Android Device Monitor
+Android的SDK目录下寻找 Tools->lib->monitor-x86_64（monitor-x86）中找到monitor.exe
+
+//重启网卡使设定生效
+sudo /etc/init.d/networking restart
+
+//ucweb.local无法访问的问题
+1、vim /etc/resolvconf/resolv.conf.d/head
+2、加入：
+    nameserver 100.84.12.31
+    nameserver 100.84.12.32
+3、resolvconf -u
+4、重启浏览器
+
+//安装APK
+adb install -r ChromePublic.apk
+
+//将当前目录下的所有文件拷贝到指定目录【/home/hsj185192/文档/'cocos2d-js-v3.13 (1)'下面的所有文件拷贝到 ./cocos/】
+cp -ri /home/hsj185192/文档/'cocos2d-js-v3.13 (1)'/* ./cocos/
+
+//修改目录权限
+chmod 777 ./cocos/      
+chmod 777 -R ./cocos/   （-R 修改该目录下的所有子目录权限）
+
+//7z解压
+7za x web-mobile.7z
+
+//启动和关闭ADB服务
+adb start-server和adb kill-server
+
+//content shell 打开URL
+out/release/bin/content_shell_apk launch http://30.102.51.8/image_decode/index.html
+
+//UC CAWShell 打开URL
+adb shell am start -n com.uc.webkit.shell/.BrowserActivity -d http://30.102.51.8/image_decode/index.html
+
+//Android WebView Shell 打开URL
+adb shell am start -n org.chromium.android_webview.shell/.AwShellActivity -d http://30.102.51.8/image_decode/index.html
+
+//关闭Android WebView Shell
+adb shell am force-stop org.chromium.android_webview.shell
+
+//进程树查找
+pstree -p|grep chrome
+
+
+//无法通过adb将文件push到system的问题 （https://blog.csdn.net/stone_2323/article/details/78092297）
+如下指令（adb环境下，下同）：
+adb remount
+adb shell
+chmod 777 system
+如果还有目标路径，对应修改权限即可(比如 chmod 777 system/bin,即可将bin也一并修改)
+
+
+//调试启动的代码
+1、out/debug/bin/webview_instrumentation_apk launch --args="--wait-for-debugger"
+2、out/debug/bin/webview_instrumentation_apk gdb
+
+
+
+
+

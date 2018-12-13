@@ -1,0 +1,24 @@
+目标：
+    提升编译和链接的速度
+
+背景/问题：
+    1、编译Chromium的基本子集需要数百个CPU分钟，其中Blink代码（特别是third_party / WebKit中的代码）约占编译总工作量的40％。
+
+    2、每个编译单元会重复上一个编译单元的部分工作，都将编译相同的头文件，启动相同的二进制文件，从磁盘读取相同的文件，
+    生成相同的调试数据，之后所有这些重复的信息都必须由连接器合并。
+
+解决方案：
+    因为chromium本身包含很多的单文件，然后每个文件会重复包含头文件，所以合并部分源文件，然后再去编译。
+
+结果：
+     Blink core+modules+bindings 节省了一半的时间。
+     content_shell + blink_tests的发布版本为451 CPU分钟。 凭借有限的统一构建，它可以节省166个CPU分钟或-37％，最低可达284分钟。
+
+参考：
+    https://groups.google.com/a/chromium.org/forum/#!topic/chromium-dev/ThDAjO7fTro
+    https://docs.google.com/document/d/19jGsZxh7DX8jkAKbL1nYBa5rcByUL2EeidnYsoXfsYQ/edit#heading=h.vj8fwwypadkk
+
+
+    
+
+每个目标将拆分为两个动作，一个动作是“合并”文件，另外一个动作是编译合并的文件和合并之外的任何文件。

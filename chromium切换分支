@@ -1,0 +1,8 @@
+# 获得所有发布tag的信息。
+git fetch --tags
+ 
+# 根据37.0.2062.103版本建立一个你自己的分支
+git checkout -b your_release_branch 37.0.2062.103
+ 
+// 同步所有相关工程代码
+gclient sync --with_branch_heads --jobs 16

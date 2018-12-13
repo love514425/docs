@@ -1,0 +1,28 @@
+
+1、设置NINJA_STATUS环境变量，配置ninja构建时，有更多的输出信息 (//docs/windows_build_instructions.md)
+```shell
+$ export NINJA_STATUS="[%r processes, %f/%t @ %o/s : %es ]"
+$ autoninja -C out\Default base
+ninja: Entering directory `out\Default'
+[1 processe, 86/86 @ 2.7/s : 31.785s ] LINK(DLL) base.dll base.dll.lib base.dll.pdb
+
+
+```shell
+$ export NINJA_SUMMARIZE_BUILD=1
+$ autoninja -C out\Default base
+
+
+2、、配置GN参数
+gn args out/debug (会运行gn脚本，并生成out/debug目录)
+
+
+3、android debug构建参数
+target_os = "android"
+target_cpu = "arm64"
+is_debug = true
+enable_nacl = false
+is_component_build = true
+use_jumbo_build = true
+
+
+
