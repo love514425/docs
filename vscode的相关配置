@@ -1,0 +1,15 @@
+
+//常用快捷键
+Ctrl + /：快速注释或取消注释；
+Ctrl + o：打开当前文件所在目录；
+Ctrl + p：打开跳转到某文件的窗口；
+Ctrl + `：调出控制台终端；
+移动当前行代码：Alt + down / alt + up
+
+
+//vscode的chromium的开发环境搭建：
+https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md#Workspace-Settings
+
+
+//调试chromium for android 
+out/Default/bin/chrome_public_apk gdb --ide
