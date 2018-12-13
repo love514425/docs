@@ -13,3 +13,7 @@ https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md#Workspace
 
 //调试chromium for android 
 out/Default/bin/chrome_public_apk gdb --ide
+
+
+能让你开发效率翻倍的 VSCode 插件配置（上）
+https://zhuanlan.zhihu.com/p/30976584
